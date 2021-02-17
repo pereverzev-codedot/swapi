@@ -74,7 +74,7 @@ export default class App extends Component {
     );
     const planetList = (
       <PlanetList onItemSelected={this.onPlanetSelected}>
-        {(i) => `${i.name} (${i.model})`}
+        {(i) => `${i.name} (${i.population})`}
       </PlanetList>
     );
 
