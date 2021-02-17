@@ -1,23 +1,14 @@
 import React, { Component } from "react";
-import Header from "../header";
-import RandomPlanet from "../random-planet";
-import ErrorIndicator from "../error-indicator";
-import ErrorBtn from "../error-button";
-import PeoplePage from "../people-page";
-import Row from "../row";
 import SwapiService from "../../services/swapi-service";
-import {
-  PersonList,
-  PlanetList,
-  StarshipList,
-  PersonDetails,
-  PlanetDetails,
-  StarshipDetails,
-} from "../sw-components";
-
-import "./app.css";
+import ErrorBtn from "../error-button";
+import ErrorIndicator from "../error-indicator";
+import Header from "../header";
 import ItemDetails, { Record } from "../item-details/item-details";
-import ItemList from "../item-list";
+import PeoplePage from "../people-page";
+import RandomPlanet from "../random-planet";
+import Row from "../row";
+import { StarshipList, PlanetList } from "../sw-components";
+import "./app.css";
 
 export default class App extends Component {
   swapiService = new SwapiService();
@@ -26,6 +17,7 @@ export default class App extends Component {
     showRandomPlanet: true,
     hasError: false,
     selectedShip: null,
+    selectedPlanet: null,
   };
 
   toggleRandomPlanet = () => {};
@@ -33,9 +25,11 @@ export default class App extends Component {
   onShipSelected = (id) => {
     this.setState({ selectedShip: id });
   };
+  onPlanetSelected = (id) => {
+    this.setState({ selectedPlanet: id });
+  };
 
   componentDidCatch() {
-    console.log("ComponentDidCatch");
     this.setState({ hasError: true });
   }
 
@@ -45,14 +39,9 @@ export default class App extends Component {
       getStarship,
       getPersonImage,
       getStarshipImage,
+      getPlanet,
+      getPlanetImage,
     } = this.swapiService;
-
-    const personDetails = (
-      <ItemDetails itemId={1} getData={getPerson} getImgUrl={getPersonImage}>
-        <Record field="gender" label="Gender" />
-        <Record field="eyeColor" label="Eye Color" />
-      </ItemDetails>
-    );
 
     const starshipDetails = (
       <ItemDetails
@@ -66,8 +55,27 @@ export default class App extends Component {
       </ItemDetails>
     );
 
+    const planetDetails = (
+      <ItemDetails
+        itemId={this.state.selectedPlanet}
+        getData={getPlanet}
+        getImgUrl={getPlanetImage}
+      >
+        <Record field="rotationPeriod" label="RP" />
+        <Record field="diameter" label="Diameter" />
+        <Record field="population" label="Population" />
+      </ItemDetails>
+    );
+
     const starshipList = (
-      <StarshipList>{(i) => `${i.name} (${i.model})`}</StarshipList>
+      <StarshipList onItemSelected={this.onShipSelected}>
+        {(i) => `${i.name} (${i.model})`}
+      </StarshipList>
+    );
+    const planetList = (
+      <PlanetList onItemSelected={this.onPlanetSelected}>
+        {(i) => `${i.name} (${i.model})`}
+      </PlanetList>
     );
 
     if (this.state.hasError) {
@@ -82,6 +90,7 @@ export default class App extends Component {
           <ErrorBtn />
           <PeoplePage />
           <Row left={starshipList} right={starshipDetails} />
+          <Row left={planetList} right={planetDetails} />
         </div>
       </div>
     );

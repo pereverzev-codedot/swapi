@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./item-details.css";
 import SwapiService from "../../services/swapi-service";
-import Spinner from "../spinner";
 import ErrorBtn from "../error-button";
+import Spinner from "../spinner";
+import "./item-details.css";
 
 const Record = ({ item, field, label }) => {
   return (
@@ -77,3 +77,4 @@ export default class ItemDetails extends Component {
 }
 
 export { Record };
+

@@ -1,18 +1,10 @@
 import React, { Component } from "react";
-import ItemList from "../item-list";
-import ItemDetails, { Record } from "../item-details/item-details";
-import ErrorIndicator from "../error-indicator";
-import ErrorBoundry from "../error-boundry";
 import SwapiService from "../../services/swapi-service";
+import ErrorBoundry from "../error-boundry";
+import ErrorIndicator from "../error-indicator";
+import ItemDetails, { Record } from "../item-details/item-details";
 import Row from "../row";
-import {
-  PersonList,
-  PlanetList,
-  StarshipList,
-  PersonDetails,
-  PlanetDetails,
-  StarshipDetails,
-} from "../sw-components";
+import { PersonList } from "../sw-components";
 import "./people-page.css";
 
 export default class PeoplePage extends Component {
@@ -30,19 +22,16 @@ export default class PeoplePage extends Component {
   };
 
   render() {
-    const {
-      getPerson,
-      getStarship,
-      getPersonImage,
-      getStarshipImage,
-    } = this.swapiService;
+    const { getPerson, getPersonImage } = this.swapiService;
 
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
 
     const itemList = (
-      <PersonList>{(i) => `${i.name} (${i.birthYear})`}</PersonList>
+      <PersonList onItemSelected={this.onPersonSelected}>
+        {(i) => `${i.name} (${i.birthYear})`}
+      </PersonList>
     );
 
     const itemDetails = (

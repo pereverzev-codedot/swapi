@@ -22,9 +22,8 @@ const withData = (View, getData) => {
         hasError: true,
       });
     }
-    
+
     render() {
-      console.log("Did mount", this.props);
       const { data } = this.state;
 
       if (!data) {
