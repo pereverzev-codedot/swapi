@@ -1,0 +1,12 @@
+body {
+  box-sizing: border-box;
+  font-weight: bold;
+}
+ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+li {
+  font-size: 18px;
+  border-top: 2px solid rgb(0, 148, 86);
+}

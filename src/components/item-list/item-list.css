@@ -1,0 +1,15 @@
+.list-group {
+  flex: 0 1 48%;
+  border-radius: 10px;
+}
+.list-group-item {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+.list-group-item:hover {
+  background-color: rgb(85, 85, 85);
+  color: rgb(0, 211, 123);
+}

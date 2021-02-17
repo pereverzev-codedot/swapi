@@ -1,0 +1,19 @@
+.error-indicator {
+  color: darkgoldenrod;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+
+.error-img {
+  padding-bottom: 20px;
+  max-width: 150px;
+}
+
+.boom {
+  font-size: 40px;
+}

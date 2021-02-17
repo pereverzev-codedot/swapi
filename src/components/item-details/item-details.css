@@ -1,0 +1,25 @@
+.info-block {
+  display: flex;
+  background-color: #303030;
+  flex: 0 1 48%;
+  border-radius: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
+.info-block__image {
+  width: 200px;
+  height: 240px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+.info-block__desc {
+  height: min-content;
+  margin-left: 10px;
+  width: 48%;
+}
+.info-block__desc-title {
+}
+.info-block__desc-list {
+}
